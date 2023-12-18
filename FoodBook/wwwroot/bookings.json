@@ -1,0 +1,38 @@
+{
+  "1": {
+    "TableNumber": 1,
+    "IsBooked": true
+  },
+  "2": {
+    "TableNumber": 2,
+    "IsBooked": false
+  },
+  "3": {
+    "TableNumber": 3,
+    "IsBooked": false
+  },
+  "4": {
+    "TableNumber": 4,
+    "IsBooked": false
+  },
+  "5": {
+    "TableNumber": 5,
+    "IsBooked": false
+  },
+  "6": {
+    "TableNumber": 6,
+    "IsBooked": false
+  },
+  "7": {
+    "TableNumber": 7,
+    "IsBooked": false
+  },
+  "8": {
+    "TableNumber": 8,
+    "IsBooked": false
+  },
+  "9": {
+    "TableNumber": 9,
+    "IsBooked": false
+  }
+}

@@ -1,0 +1,59 @@
+﻿@page
+@using FoodBook.Model;
+@model FoodBook.Pages.Kunder.IndexModel
+@{
+
+    <div class="text-center">
+        <h1 class="display-4">Opret Dig Her</h1>
+    </div>
+
+    <form method="post">
+
+        <input type="number" name="id">
+        <input type="text" name="Name">
+        <input type="text" name="Email">
+        <input type="text" name="Phone">
+
+
+
+        <button type="submit">Opret</button>
+
+    </form>
+
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Navn</th>
+                <th>E-Mail</th>
+                <th>TLF:</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (Kunde kunde in Model.Kunder)
+            {
+                <tr>
+                    <td>
+                        @kunde.Id
+                    </td>
+                    <td>
+                        @kunde.Name
+                    </td>
+                    <td>
+                        @kunde.Email
+                    </td>
+                    <td>
+                        @kunde.Phone
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+
+}

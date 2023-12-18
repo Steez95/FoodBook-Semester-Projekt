@@ -1,0 +1,71 @@
+﻿@page
+@using FoodBook.Model;
+@model FoodBook.Booking.Index.IndexModel
+@{
+    ViewData["Title"] = "Table Booking";
+}
+<div class="text-center">
+<h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+
+<form method="post">
+    <div>
+        <label for="tableNumber">Table:</label>
+        <select id="tableNumber" name="tableNumber">
+            @foreach (var table in Model.TablesList.Where(t => t.IsBooked != true))
+            {
+                <option value="@table.TableNumber">@table.TableNumber</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="Name" required>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="Email" required>
+    </div>
+    <div>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="Phone" required>
+    </div>
+    <button type="submit">Opret</button>
+</form>
+
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>Booked</th>
+            <th>Bord nr.</th>
+            <th>Bord størrelse</th>
+            <th>Kunde</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (Table table in Model.TablesList)
+        {
+            <tr>
+                <td style ="color: @(table.IsBooked ? "red" : "green");">
+                    @(table.IsBooked ? "Optaget" : "Ledig")
+                </td>
+                <td>
+                    @table.TableNumber
+                </td>
+                <td>
+                    @table.TableSize
+                </td>
+                <td>
+                    @table.Customer?.Name
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>

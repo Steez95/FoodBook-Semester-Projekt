@@ -5,7 +5,7 @@
     ViewData["Title"] = "Table Booking";
 }
 <div class="text-center">
-<h1 class="display-4">@ViewData["Title"]</h1>
+    <h1 class="display-4">@ViewData["Title"]</h1>
 </div>
 
 
@@ -31,7 +31,7 @@
         <label for="phone">Phone:</label>
         <input type="tel" id="phone" name="Phone" required>
     </div>
-    <button type="submit">Opret</button>
+    <button type="submit">Book</button>
 </form>
 
 
@@ -51,7 +51,7 @@
         @foreach (Table table in Model.TablesList)
         {
             <tr>
-                <td style ="color: @(table.IsBooked ? "red" : "green");">
+                <td style="color: @(table.IsBooked ? "red" : "green");">
                     @(table.IsBooked ? "Optaget" : "Ledig")
                 </td>
                 <td>

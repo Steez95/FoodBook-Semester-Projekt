@@ -9,97 +9,53 @@ namespace FoodBook.Booking.Index
 {
     public class IndexModel : PageModel
     {
-        private readonly Tables _bookings;
+
         public List<Table> TablesList { get; set; }
 
-        public IndexModel(Tables bookings)
+        public IndexModel()
         {
-            _bookings = bookings;
 
-            TablesList = new List<Table>() 
-            { 
-                new Table
-                {
-                    TableNumber = 1,
-                    TableSize = 3,
-                    Customer = null,
-                    IsBooked = false,
-                },
-                new Table
-                {
-                    TableNumber = 2,
-                    TableSize = 5,
-                    Customer = null,
-                    IsBooked = false,
-                },
-                new Table
-                {
-                    TableNumber = 3,
-                    TableSize = 2,
-                    Customer = null,
-                    IsBooked = false,
-                },
-                new Table
-                {
-                    TableNumber = 4,
-                    TableSize = 10,
-                    Customer = null,
-                    IsBooked = false,
-                },
-                new Table
-                {
-                    TableNumber = 5,
-                    TableSize = 4,
-                    Customer = null,
-                    IsBooked = false,
-                },
-                new Table
-                {
-                    TableNumber = 6,
-                    TableSize = 3,
-                    Customer = null,
-                    IsBooked = false,
-                },
-                new Table
-                {
-                    TableNumber = 7,
-                    TableSize = 5,
-                    Customer = null,
-                    IsBooked = false,
-                },
-                new Table
-                {
-                    TableNumber = 8,
-                    TableSize = 4,
-                    Customer = new Kunde
-                    {
-                        Id = 1,
-                        Email = "hej@yeet.dk",
-                        Name = "Jørgen Skolemand",
-                        Phone = "88888888"
-                    },
-                    IsBooked = true,
-                }, 
-            };
+
+            LoadTables();
+
         }
 
-        public void OnPost(string tableNumber)
+        public void OnPost(string tableNumber, Kunde customer)
         {
-            if (int.TryParse(tableNumber, out int tableNum) && _bookings.AvailableTables.ContainsKey(tableNum) && !_bookings.AvailableTables[tableNum].IsBooked)
+            if (int.TryParse(tableNumber, out int tableNum) && TablesList.Exists(t => t.TableNumber == tableNum) 
+                && !TablesList.Find(t => t.TableNumber == tableNum).IsBooked)
             {
-                _bookings.AvailableTables[tableNum].IsBooked = true;
+                var table = TablesList.Find(t => t.TableNumber == tableNum);
+                table.IsBooked = true;
+                table.Customer = customer;
+                table.Customer.Id = 1;
 
-                // Save bookings to the JSON file
-                SaveBookings();
+                // Save tables to the JSON file
+                SaveTables();
             }
         }
 
-        private void SaveBookings()
+        private void SaveTables()
         {
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "bookings.json");
-            var json = JsonConvert.SerializeObject(_bookings.AvailableTables, Formatting.Indented);
+            var json = JsonConvert.SerializeObject(TablesList, Formatting.Indented);
             System.IO.File.WriteAllText(filePath, json);
-          
+        }
+
+        private void LoadTables()
+        {
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "bookings.json");
+
+            if (System.IO.File.Exists(filePath))
+            {
+                var json = System.IO.File.ReadAllText(filePath);
+                TablesList = JsonConvert.DeserializeObject<List<Table>>(json);
+            }
+            else
+            {
+                // If the file doesn't exist, create an empty list
+                TablesList = new List<Table>();
+            }
         }
     }
 }

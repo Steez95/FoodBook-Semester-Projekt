@@ -1,38 +1,65 @@
-{
-  "1": {
+[
+  {
     "TableNumber": 1,
-    "IsBooked": true
+    "TableSize": 3,
+    "IsBooked": true,
+    "Customer": null
   },
-  "2": {
+  {
     "TableNumber": 2,
-    "IsBooked": false
+    "TableSize": 5,
+    "IsBooked": true,
+    "Customer": {
+      "Id": 1,
+      "Name": null,
+      "Email": null,
+      "Phone": null
+    }
   },
-  "3": {
+  {
     "TableNumber": 3,
-    "IsBooked": false
+    "TableSize": 2,
+    "IsBooked": true,
+    "Customer": {
+      "Id": 1,
+      "Name": "hej",
+      "Email": "med@dig.ok",
+      "Phone": "44559977"
+    }
   },
-  "4": {
+  {
     "TableNumber": 4,
-    "IsBooked": false
+    "TableSize": 10,
+    "IsBooked": false,
+    "Customer": null
   },
-  "5": {
+  {
     "TableNumber": 5,
-    "IsBooked": false
+    "TableSize": 4,
+    "IsBooked": false,
+    "Customer": null
   },
-  "6": {
+  {
     "TableNumber": 6,
-    "IsBooked": false
+    "TableSize": 3,
+    "IsBooked": false,
+    "Customer": null
   },
-  "7": {
+  {
     "TableNumber": 7,
-    "IsBooked": false
+    "TableSize": 5,
+    "IsBooked": false,
+    "Customer": null
   },
-  "8": {
+  {
     "TableNumber": 8,
-    "IsBooked": false
-  },
-  "9": {
-    "TableNumber": 9,
-    "IsBooked": false
+    "TableSize": 4,
+    "IsBooked": true,
+    "Customer": {
+      "Id": 1,
+      "Name": "Jørgen Skolemand",
+      "Email": "hej@yeet.dk",
+      "Phone": "88888888"
+    }
   }
-}
+]
